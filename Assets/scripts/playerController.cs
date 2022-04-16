@@ -11,6 +11,10 @@ public class playerController : MonoBehaviour
             this.transform.position+=new Vector3(-speed,0,0) * Time.deltaTime;
         if (Input.GetKey(KeyCode.D))
             this.transform.position += new Vector3(speed, 0, 0) * Time.deltaTime;
+        if (Input.GetKey(KeyCode.W))
+            this.transform.position += new Vector3(0, 0, speed) * Time.deltaTime;
+        if (Input.GetKey(KeyCode.S))
+            this.transform.position += new Vector3( 0, 0,-speed) * Time.deltaTime;
         if (transform.position.x < 0)
             transform.position = new Vector3();
         if (transform.position.x > Leveler.Lenth)
