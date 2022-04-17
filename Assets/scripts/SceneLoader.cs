@@ -11,7 +11,7 @@ public class SceneLoader : MonoBehaviour
         for (int index = 0; index < Leveler.PupilCount; index++)
         {
             Vector3 position = new Vector3(Random.Range(1, Leveler.Lenth),0,
-                    Random.Range(-Leveler.Width, 1 + Leveler.Width));
+                    Random.Range(-Leveler.Width, Leveler.Width)+0.5f);
 
             for (int pupilIndex = 0; pupilIndex < index; pupilIndex++)
             {
@@ -19,7 +19,7 @@ public class SceneLoader : MonoBehaviour
                     GetChild(pupilIndex).transform.position))
                 {
                     position = new Vector3(Random.Range(1, Leveler.Lenth),0,
-                        Random.Range(- Leveler.Width, 1 + Leveler.Width));
+                        Random.Range(- Leveler.Width, Leveler.Width)+0.5f);
                     pupilIndex = 0;
                 }
             }
