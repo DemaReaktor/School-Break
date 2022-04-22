@@ -25,5 +25,6 @@ public class SceneLoader : MonoBehaviour
             }
             Instantiate(pupil, position, new Quaternion(), pupilFolder.transform);
         }
+        Timer.Start(Leveler.Time);
     }
 }

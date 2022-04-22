@@ -32,6 +32,7 @@ public class playerController : MonoBehaviour
         //move of player
         Vector3 move=new Vector3();
 
+        //run
         if (Input.GetKeyDown(KeyCode.LeftShift))
             isRun = !isRun;
         realSpeed = speed * (isRun?coefficientOfRun:1f);
