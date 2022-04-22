@@ -4,7 +4,7 @@ public class PupilFisics : MonoBehaviour
 {
     private const float distance = 0.95f;
     private const float pushCoefficient = 0.02f;
-    public static void PushAll(Transform pusher, Vector3 power)
+    public static void Go(Transform walker, Vector3 power)
     {
         float speed = power.magnitude;
 
@@ -21,9 +21,9 @@ public class PupilFisics : MonoBehaviour
          PupilFolder.transform.childCount; index++)
             {
 
-                if (Vector3.Distance(power + pusher.position,
+                if (Vector3.Distance(power + walker.position,
                     Leveler.SceneLoader.PupilFolder.transform.GetChild(index).
-                    position) < distance && pusher !=
+                    position) < distance && walker !=
                     Leveler.SceneLoader.PupilFolder.transform.GetChild(index))
                 {
                     float kut, x, t;
@@ -31,10 +31,10 @@ public class PupilFisics : MonoBehaviour
 
                     kut = Vector3.Angle(power,
                     Leveler.SceneLoader.PupilFolder.transform.
-                        GetChild(index).position - pusher.position)
+                        GetChild(index).position - walker.position)
                         * Mathf.PI / 180f;
                     x = Vector3.Distance(Leveler.SceneLoader.PupilFolder.transform.
-                        GetChild(index).position, pusher.transform.position);
+                        GetChild(index).position, walker.transform.position);
                     t = x * Mathf.Cos(kut) - Mathf.Sqrt(distance *
                         distance - x * x * Mathf.Sin(kut) * Mathf.Sin(kut));
                     //d = x * Mathf.Sin(kut * Mathf.PI / 180f);
@@ -43,19 +43,19 @@ public class PupilFisics : MonoBehaviour
                     //t = p - y;
 
                     if (t > 0.015f)// move until touch pupil
-                        PushAll(pusher, power.normalized * t);
+                        Go(walker, power.normalized * t);
 
                     x = Vector3.Distance(Leveler.SceneLoader.PupilFolder.transform.
-                        GetChild(index).position, pusher.transform.position);
+                        GetChild(index).position, walker.transform.position);
                     //check is pusher in pupil
                     if (x < 1)
                     {
-                        Vector3 pushPower = (pusher.position -
+                        Vector3 pushPower = (walker.position -
                             Leveler.SceneLoader.PupilFolder.transform.
                             GetChild(index).position).normalized
                             * pushCoefficient * speed / x;
                         power += pushPower;
-                        PushAll(Leveler.SceneLoader.PupilFolder.transform.
+                        Go(Leveler.SceneLoader.PupilFolder.transform.
                             GetChild(index), -pushPower);
                     }
 
@@ -64,7 +64,7 @@ public class PupilFisics : MonoBehaviour
 
                     kut = Vector3.Angle(power,
                     Leveler.SceneLoader.PupilFolder.transform.
-                    GetChild(index).position - pusher.position);
+                    GetChild(index).position - walker.position);
 
                     //power change normal across pupil
                     power = Quaternion.AngleAxis(Mathf.PI / 2 - kut, Vector3.up)
@@ -72,7 +72,7 @@ public class PupilFisics : MonoBehaviour
                         (Mathf.Tan(kut * Mathf.PI / 180f) + 1);
 
                     //move pupil
-                    PushAll(Leveler.SceneLoader.PupilFolder.transform.
+                    Go(Leveler.SceneLoader.PupilFolder.transform.
                 GetChild(index), Quaternion.AngleAxis(kut, Vector3.up)
                 * powerForPupil / (Mathf.Tan(kut * Mathf.PI / 180f) + 1));
 
@@ -81,7 +81,7 @@ public class PupilFisics : MonoBehaviour
             }
             index = -1;
             Vector3 newPos;
-            newPos = power + pusher.position;
+            newPos = power + walker.position;
 
             //check walls
             if (newPos.x < -0.5f)
@@ -90,7 +90,7 @@ public class PupilFisics : MonoBehaviour
 
                 kut = Vector3.Angle(-Vector3.right, power);
                 x = -0.5f - newPos.x;
-                PushAll(pusher, power * (power.magnitude - x / Mathf.Cos
+                Go(walker, power * (power.magnitude - x / Mathf.Cos
                     (kut * Mathf.PI / 180)));
 
                 //pusher.position += power * (power.magnitude-x/Mathf.Cos
@@ -107,7 +107,7 @@ public class PupilFisics : MonoBehaviour
 
                 kut = Vector3.Angle(Vector3.right, power);
                 x = newPos.x + 0.5f - Leveler.Lenth;
-                PushAll(pusher, power * (power.magnitude - x / Mathf.Cos
+                Go(walker, power * (power.magnitude - x / Mathf.Cos
                     (kut * Mathf.PI / 180)));
 
                 //pusher.position += power * (power.magnitude - x / Mathf.Cos
@@ -124,7 +124,7 @@ public class PupilFisics : MonoBehaviour
 
                 kut = Vector3.Angle(Vector3.forward, power);
                 z = newPos.z + 0.5f - Leveler.Width;
-                PushAll(pusher, power * (power.magnitude - z / Mathf.Cos
+                Go(walker, power * (power.magnitude - z / Mathf.Cos
                     (kut * Mathf.PI / 180)));
 
                 //pusher.position += power * (power.magnitude-x/Mathf.Cos
@@ -141,7 +141,7 @@ public class PupilFisics : MonoBehaviour
 
                 kut = Vector3.Angle(-Vector3.forward, power);
                 z = 0.5f - Leveler.Width - newPos.z;
-                PushAll(pusher, power * (power.magnitude - z / Mathf.Cos
+                Go(walker, power * (power.magnitude - z / Mathf.Cos
                     (kut * Mathf.PI / 180)));
 
                 //pusher.position += power * (power.magnitude-x/Mathf.Cos
@@ -153,6 +153,6 @@ public class PupilFisics : MonoBehaviour
                 index = 0;
             }
         } while (index == 0 && power.magnitude > 0.01f);
-        pusher.transform.position += power;
+        walker.transform.position += power;
     }
 }
