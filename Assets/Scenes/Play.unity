@@ -373,7 +373,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19988c86f8ec7e14b9f14690daee7fa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5.77
+  speed: 2.5
+  coefficientOfRun: 4
   speedOfCameraRelativeToDistance: 1.5
   coefficientOfCameraForward: 0.6
 --- !u!1 &1400136000
