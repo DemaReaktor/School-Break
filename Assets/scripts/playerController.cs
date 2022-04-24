@@ -63,7 +63,7 @@ public class playerController : MonoBehaviour
             positionOfCamera = 0f;
 
         transform.GetChild(0).localPosition =new Vector3(
-            positionOfCamera*distanceForCamera*coefficientOfCameraForward,0,-10);
+            positionOfCamera*distanceForCamera*coefficientOfCameraForward,4,-10);
     }
 
 }

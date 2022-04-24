@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
 
-public class Leveler
+public static class Leveler
 {
-    [SerializeField]
-    [Range(1, 100)]
     private static int level;
     private static int lenth;
     private static int width;
@@ -22,8 +20,8 @@ public class Leveler
         loader = sceneLoader;
         level = 2;
         lenth = level*3 + 20;
-        width = level / 10 + 2;
-        pupilCount =  (level-1)*3 + 1;
-        time = lenth / Mathf.Sqrt(level);
+        width = level / 11 + 2;
+        pupilCount =  lenth*width*4/(108-level);
+        time = level*1.6f+40f;
     }
 }

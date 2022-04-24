@@ -4,7 +4,11 @@ public class SceneLoader : MonoBehaviour
 {
     [SerializeField] private GameObject pupil;
     [SerializeField] private GameObject pupilFolder;
+    [SerializeField] private GameObject player;
+    [ Range(0f,10f)][SerializeField] private float distance;
     public GameObject PupilFolder { get { return pupilFolder; } }
+    public GameObject Player { get { return player; } }
+    public float Distance { get { return distance; } }
     private void Start()
     {
         Leveler.Start(this);
@@ -26,5 +30,6 @@ public class SceneLoader : MonoBehaviour
             Instantiate(pupil, position, new Quaternion(), pupilFolder.transform);
         }
         Timer.Start(Leveler.Time);
+        PupilsOpacities.ChangeOpacitiesForAll(player.transform);
     }
 }
