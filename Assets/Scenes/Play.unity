@@ -152,7 +152,7 @@ MonoBehaviour:
   pupil: {fileID: 1694745946686601338, guid: 3b1a75f52b07a08439080a68365c077b, type: 3}
   pupilFolder: {fileID: 1433015941}
   player: {fileID: 1380798302}
-  distance: 10
+  distance: 4
 --- !u!4 &265352901
 Transform:
   m_ObjectHideFlags: 0
