@@ -6,9 +6,9 @@ public class SceneLoader : MonoBehaviour
     [SerializeField] private GameObject pupilFolder;
     [SerializeField] private GameObject player;
     [ Range(0f,10f)][SerializeField] private float distance;
-    public GameObject PupilFolder { get { return pupilFolder; } }
-    public GameObject Player { get { return player; } }
-    public float Distance { get { return distance; } }
+    public GameObject PupilFolder => pupilFolder; 
+    public GameObject Player => player; 
+    public float Distance => distance;
     private void Start()
     {
         Leveler.Start(this);

@@ -2,8 +2,8 @@
 
 public class playerController : MonoBehaviour
 {
-   [SerializeField]
-    [Range(0.05f,10)]
+    [SerializeField]
+    [Range(0.05f, 10)]
     private float speed;
     [SerializeField]
     [Range(1f, 5f)]
@@ -30,14 +30,14 @@ public class playerController : MonoBehaviour
         normalOfMove = 0f;
 
         //move of player
-        Vector3 move=new Vector3();
+        Vector3 move = new Vector3();
 
         //run
         if (Input.GetKeyDown(KeyCode.LeftShift))
             isRun = !isRun;
-        realSpeed = speed * (isRun?coefficientOfRun:1f);
-        
-        if (Input.GetKey(KeyCode.A)) 
+        realSpeed = speed * (isRun ? coefficientOfRun : 1f);
+
+        if (Input.GetKey(KeyCode.A))
         {
             move += new Vector3(-realSpeed, 0, 0) * Time.deltaTime;
             normalOfMove += -1f;
@@ -50,20 +50,18 @@ public class playerController : MonoBehaviour
         if (Input.GetKey(KeyCode.W))
             move += new Vector3(0, 0, realSpeed) * Time.deltaTime;
         if (Input.GetKey(KeyCode.S))
-            move += new Vector3( 0, 0,-realSpeed) * Time.deltaTime;
-      
+            move += new Vector3(0, 0, -realSpeed) * Time.deltaTime;
+
         //player move and push all
-        PupilFisics.Go(this.transform,move);
+        PupilFisics.Go(this.transform, move);
 
         //move of camera
-        positionOfCamera += (normalOfMove - positionOfCamera) *
-            Time.deltaTime*speedOfCameraRelativeToDistance;
-        if (Mathf.Abs(positionOfCamera) < 0.1f*Time.deltaTime&&
-            normalOfMove==0f)
+        positionOfCamera = positionOfCamera + (normalOfMove - positionOfCamera) *
+            Time.deltaTime * speedOfCameraRelativeToDistance;
+        if (Mathf.Abs(positionOfCamera) < 0.1f * Time.deltaTime && normalOfMove == 0f)
             positionOfCamera = 0f;
 
-        transform.GetChild(0).localPosition =new Vector3(
-            positionOfCamera*distanceForCamera*coefficientOfCameraForward,4,-10);
+        CameraMoveController.MoveCamera(positionOfCamera * distanceForCamera * coefficientOfCameraForward);
     }
 
 }
