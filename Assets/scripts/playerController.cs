@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class playerController : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     [Range(0.05f, 10)]
@@ -20,10 +20,16 @@ public class playerController : MonoBehaviour
     private float realSpeed;
     private float positionOfCamera;
     private float normalOfMove;
+
+    private static PlayerController referance;
+
+    public static PlayerController Referance => referance;
     private void Start()
     {
         positionOfCamera = 0f;
         isRun = false;
+
+        referance = this;
     }
     void FixedUpdate()
     {

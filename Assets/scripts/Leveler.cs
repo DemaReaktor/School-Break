@@ -9,17 +9,17 @@ public static class Leveler
     private static SceneLoader loader;
     private static float time;
 
-    public static int Lenth { get { return lenth; } }
-    public static int Width { get { return width; } }
-    public static int PupilCount { get { return pupilCount; } }
-    public static SceneLoader SceneLoader { get { return loader; } }
-    public static float Time { get { return time; } }
+    public static int Lenth => lenth; 
+    public static int Width => width; 
+    public static int PupilCount => pupilCount; 
+    public static SceneLoader SceneLoader => loader; 
+    public static float Time => time; 
 
     public static void Start(SceneLoader sceneLoader)
     {
         loader = sceneLoader;
-        level = 2;
-        lenth = level*3 + 20;
+        level = 1;
+        lenth = level*3 + 120;
         width = level / 11 + 2;
         pupilCount =  lenth*width*4/(108-level);
         time = level*1.6f+40f;

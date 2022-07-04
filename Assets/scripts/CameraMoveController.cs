@@ -9,10 +9,10 @@ public class CameraMoveController : MonoBehaviour
     public static float Position => referance.Camera.transform.localPosition.x;
     public static CameraMoveController Referance => referance;
 
-    [SerializeField] private Camera Camera;
+    public Camera Camera;
     [SerializeField] private UnityEvent unityEvent;
 
-    private void Start()
+    private void Awake()
     {
         referance = this;
         if (!Camera && !TryGetComponent<Camera>(out Camera))

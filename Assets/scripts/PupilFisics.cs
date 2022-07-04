@@ -154,7 +154,7 @@ public class PupilFisics : MonoBehaviour
             }
         } while (index == 0 && power.magnitude > 0.01f);
         walker.transform.position += power;
-        if (walker.TryGetComponent<playerController>(out playerController nuller))
+        if (walker.TryGetComponent<PlayerController>(out PlayerController nuller))
             PupilsOpacities.ChangeOpacities(walker);
     }
 }
